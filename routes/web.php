@@ -19,6 +19,7 @@ require __DIR__.'/auth.php';
 Route::controller(AgendamentoController::class)->prefix('agendamento')->name('agendamento.')->group(function (){
     Route::get('/',  'index')->name('index');
     Route::get('/create',  'create')->name('create');
+    Route::get('/horarios',  'horariosDisponiveis')->name('horarios');
 //    Route::get('/{id}', 'show')->name('show');
 //    Route::put('/{id}', 'update')->name('update');
     Route::post('/', 'store')->name('store');
