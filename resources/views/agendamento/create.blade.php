@@ -52,6 +52,7 @@
                     data_escolhida: data_input
                 }
             }).done(function(result){
+                console.log(result);
                 let html = '';
                 if(result.length > 0){
                     $.each(result, function (index, element){

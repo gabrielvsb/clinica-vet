@@ -14,7 +14,8 @@ class Pet extends Model
     protected $fillable = [
         'nome',
         'data_nascimento',
-        'user_id'
+        'user_id',
+        'raca'
     ];
 
     protected $primaryKey = 'id';

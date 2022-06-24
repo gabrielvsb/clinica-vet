@@ -10,7 +10,12 @@ class PetController extends Controller
 {
     public function index()
     {
-        $pets = Pet::where('user_id', Auth::id())->get();
+        if(auth()->user()->role == 'cliente'){
+            $pets = Pet::where('user_id', Auth::id())->get();
+        }else{
+            $pets = Pet::all();
+        }
+
         return view('pet.index', ['pets' => $pets]);
     }
 
@@ -24,13 +29,15 @@ class PetController extends Controller
         try {
             $request->validate([
                 'nome' => ['required', 'string', 'max:255'],
-                'data_nascimento' => ['required', 'date']
+                'data_nascimento' => ['required', 'date'],
+                'raca' => ['required', 'string', 'max:255']
             ]);
 
             Pet::create([
                 'nome' => $request->nome,
                 'data_nascimento' => $request->data_nascimento,
                 'user_id' => Auth::id(),
+                'raca' => $request->raca
             ]);
 
             return redirect()->route('pet.index');
